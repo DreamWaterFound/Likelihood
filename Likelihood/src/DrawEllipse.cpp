@@ -45,6 +45,11 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	//特征向量
 	Eigen::Matrix2d V = es.pseudoEigenvectors();
 
+	//debug
+	cout << "D=" << D << endl;
+	cout << "V=" << V << endl;
+
+
 	//找到最大的特征值
 
 	Eigen::Vector2d lamda;	//存储排序后的特征值
@@ -96,6 +101,11 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	center.y = mean(1);
 
 	cout << "[][]a=" << a << " b=" << b << " angle=" << angle << endl;
+	cout << "center.x=" << center.x << " center.y=" << center.y << endl;
+	
+	//debug
+	angle = 0;
+
 	return cv::RotatedRect(
 		center,
 		cv::Size2d(a,b),
@@ -137,3 +147,5 @@ void DrawEllipse::drawErrorEllipse(cov2dMatrix cov, mean2d mean,cv::Mat &src)
 		cv::Scalar::all(255),
 		1);
 }
+
+//MATLAB跑一下

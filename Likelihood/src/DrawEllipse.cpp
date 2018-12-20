@@ -15,7 +15,7 @@ void DrawEllipse::draw(mean2d mean, cov2dMatrix cov, sampleSet samples)
 
 	//首先生成一个全黑色的画布
 	cv::Mat img(IMG_WIDTH, IMG_HIGHT,
-		CV_32SC3, cv::Scalar(0));
+		CV_8UC3, cv::Scalar(0));
 	drawSamples(img, samples);
 
 	cv::imshow("D", img);
@@ -91,8 +91,8 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 
 	return cv::RotatedRect(
 		center,
-		cv::Size2f(a,b),
-		-angle);
+		cv::Size2d(a,b),
+		(float)-angle);
 }
 
 
@@ -105,11 +105,12 @@ void DrawEllipse::drawSamples(cv::Mat &src, sampleSet samples)
 
 	for (int i = 0; i < DATA_LEN; i++)
 	{
-		int x = floor(3*samples(i, 0));
-		int y = floor(samples(i, 1));
-		src.at<int>(x, y) = 255;
-		src.at<int>(x+1, y) = 255;
-		src.at<int>(x+2, y) = 255;
+		int x = (int)floor(samples(i, 0));
+		//int x = (int)floor(samples(i, 0));
+		int y = (int)floor(samples(i, 1));
+		src.at<unsigned char>(x, 3*y) = 255;
+		src.at<unsigned char>(x, 3*y+1) = 255;
+		src.at<unsigned char>(x, 3*y+2) = 255;
 	}
 
 	return ;

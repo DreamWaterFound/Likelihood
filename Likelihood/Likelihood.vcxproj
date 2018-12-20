@@ -134,7 +134,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>E:\Programing\Self\Likelihood\Likelihood\include;E:\lib\eigen3;I:\opencv\opencv\build\include\opencv2;I:\opencv\opencv\build\include\opencv;I:\opencv\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -150,6 +150,7 @@
     <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="doc\Log.txt" />
     <Text Include="Sample1.txt" />
     <Text Include="Sample2.txt" />
   </ItemGroup>

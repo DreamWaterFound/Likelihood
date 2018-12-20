@@ -15,6 +15,11 @@ DataReader::DataReader(const char* path)
 	//没正确打开就不管了
 }
 
+DataReader::DataReader()
+{
+	;
+}
+
 DataReader::~DataReader()
 {
 	//析构函数中要关闭文件流
@@ -103,10 +108,12 @@ bool DataReader::readSamples(void)
 		mmCov(1, 0) >> mmCov(1, 1);
 	//读取样本数据
 
+	
 	for (int i = 0; i < mnNum; i++)
 	{
 		msFile >> mmsample(i, 0) >> mmsample(i, 1);
 	}
+	
 
 	//不做验证了
 	return true;

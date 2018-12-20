@@ -16,6 +16,7 @@ class DataReader
 {
 public:
 	DataReader(const char* path);
+	DataReader::DataReader();
 	~DataReader(void);
 
 	bool openFile(const char* path);

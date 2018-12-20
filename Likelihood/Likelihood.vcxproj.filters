@@ -27,6 +27,9 @@
     <Text Include="Sample2.txt">
       <Filter>数据文件</Filter>
     </Text>
+    <Text Include="doc\Log.txt">
+      <Filter>文档</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">

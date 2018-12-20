@@ -7,6 +7,8 @@
 #include <Eigen/Dense>
 #include <Eigen/EigenValues>
 
+#include <iostream>
+
 using namespace std;
 
 cv::Mat DrawEllipse::createNewImg(void)
@@ -37,7 +39,7 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	//首先要使用一个解算器.由于我们可以保证协方差矩阵的一些性质，
 	//因此它是可逆的，并且数学上能够保证求解出来的特征向量都是实根
 	Eigen::EigenSolver<Eigen::Matrix2d> es(cov);
-
+	
 	//特征值（的对角矩阵）
 	Eigen::Matrix2d D = es.pseudoEigenvalueMatrix();
 	//特征向量
@@ -65,18 +67,22 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 		v1(0) = V(0, 1);
 		v1(1) = V(1, 1);
 	}
-
+	
 	//然后计算参数
 	double delta1 = cov(0, 0) > cov(1, 1) ? cov(0, 0) : cov(1, 1);
 	double delta2 = cov(0, 0) <= cov(1, 1) ? cov(0, 0) : cov(1, 1);
 
+	
 	//长短轴半长度
-	double a = delta1*sqrt(SQURE_CONST*lamda(0));
-	double b = delta2*sqrt(SQURE_CONST*lamda(1));
-
+	double a = sqrt(delta1*SQURE_CONST*lamda(0));
+	double b = sqrt(delta2*SQURE_CONST*lamda(1));
+	
 	//以及角度
 	double angle = atan2(v1(1),v1(0));
+	
 
+	//for debug
+	//double angle = 0.717;
 	//角度范围的转换,[0,2pi] => [-pi,pi]
 	if (angle < 0)
 		angle += 2 * M_PI;
@@ -89,7 +95,7 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	center.x = mean(0);
 	center.y = mean(1);
 
-
+	cout << "[][]a=" << a << " b=" << b << " angle=" << angle << endl;
 	return cv::RotatedRect(
 		center,
 		cv::Size2d(a,b),

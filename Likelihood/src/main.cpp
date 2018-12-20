@@ -86,5 +86,5 @@ void proc(DataReader &reader,cv::Mat &src)
 	DrawEllipse::drawSamples(src, data);
 
 
-	DrawEllipse::drawErrorEllipse(mu, cov, src);
+	DrawEllipse::drawErrorEllipse( cov,mu, src);
 }

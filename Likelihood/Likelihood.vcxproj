@@ -157,11 +157,13 @@
   <ItemGroup>
     <ClCompile Include="src\Compute.cpp" />
     <ClCompile Include="src\dataReader.cpp" />
+    <ClCompile Include="src\DrawEllipse.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Compute.h" />
     <ClInclude Include="include\dataReader.h" />
+    <ClInclude Include="include\DrawEllipse.h" />
     <ClInclude Include="include\Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

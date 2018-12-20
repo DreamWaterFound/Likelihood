@@ -21,11 +21,15 @@ int main(void)
 	cout << "文件 " << DEFAULT_PATH_1 << "打开成功。" << endl;
 	Eigen::Vector2d mu;
 	Eigen::Matrix<double, 2, 2> cov;
+	Eigen::Matrix<int, 200, 2> data;
 	reader1.getMean(mu);
 	reader1.getCov(cov);
+	reader1.getData(data);
 
 	cout << "数据样本均值为 " << endl << mu << endl;
 	cout << "协方差矩阵为 " << endl << cov << endl;
+	cout << "数据为：" << endl;
+	cout << data << endl;
 	cout << "程序终止。" << endl;
 
 	

@@ -55,7 +55,7 @@ bool DataReader::isFileOn(void)
 	return msFile.is_open();
 }
 
-bool DataReader::getData(Eigen::Matrix<int, 200, 2> &sample)
+bool DataReader::getData(sampleSet &sample)
 {
 	if (isFileOn())
 	{
@@ -69,7 +69,7 @@ bool DataReader::getData(Eigen::Matrix<int, 200, 2> &sample)
 	}
 }
 
-bool DataReader::getMean(Eigen::Vector2d &mean)
+bool DataReader::getMean(mean2d &mean)
 {
 	if (isFileOn())
 	{
@@ -82,7 +82,7 @@ bool DataReader::getMean(Eigen::Vector2d &mean)
 	}
 }
 
-bool DataReader::getCov(Eigen::Matrix<double, 2, 2> &cov)
+bool DataReader::getCov(cov2dMatrix &cov)
 {
 	if (isFileOn())
 	{

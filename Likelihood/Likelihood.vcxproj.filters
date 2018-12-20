@@ -38,9 +38,18 @@
     <ClCompile Include="src\dataReader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\Compute.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\dataReader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Compute.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Types.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

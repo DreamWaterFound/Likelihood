@@ -6,8 +6,8 @@
 #include <cstring>
 
 
-#define DEFAULT_PATH_1 "J:\sample1.txt"
-#define DEFAULT_PATH_2 "J:\sample2.txt"
+#define DEFAULT_PATH_1 "J:\\sample1.txt"
+#define DEFAULT_PATH_2 "J:\\sample2.txt"
 
 using namespace std;
 
@@ -39,9 +39,5 @@ private:
 	Eigen::Matrix<double, 2, 2> mmCov;		//先验协方差矩阵
 
 	ifstream msFile;						//输入文件流
-	char msfilename[1024];						//存储文件路径
-
-
-
-
+	
 };

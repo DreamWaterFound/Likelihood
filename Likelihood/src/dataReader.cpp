@@ -8,7 +8,6 @@ DataReader::DataReader(const char* path)
 	//判断文件是否正确打开
 	if (isFileOn())
 	{
-		strcpy((char*)path, msfilename);
 		//如果正确打开了那么就尝试读取数据
 		readSamples();
 	}
@@ -113,6 +112,7 @@ bool DataReader::readSamples(void)
 	{
 		msFile >> mmsample(i, 0) >> mmsample(i, 1);
 	}
+	
 	
 
 	//不做验证了

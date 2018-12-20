@@ -9,23 +9,24 @@
 
 using namespace std;
 
+cv::Mat DrawEllipse::createNewImg(void)
+{
+	//首先生成一个全黑色的画布
+	return cv::Mat (IMG_WIDTH, IMG_HIGHT,
+		CV_8UC3, cv::Scalar(0));
+}
+
+/*
 void DrawEllipse::draw(mean2d mean, cov2dMatrix cov, sampleSet samples)
 {
-	//绘制误差椭圆
-
-	//首先生成一个全黑色的画布
-	cv::Mat img(IMG_WIDTH, IMG_HIGHT,
-		CV_8UC3, cv::Scalar(0));
+	//绘制误差椭圆	
 	drawSamples(img, samples);
 
 	cv::imshow("D", img);
-	cv::waitKey();
-
-	//先做到这里
-
-
 	
+	//先做到这里
 }
+*/
 
 cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	mean2d mean)
@@ -106,12 +107,27 @@ void DrawEllipse::drawSamples(cv::Mat &src, sampleSet samples)
 	for (int i = 0; i < DATA_LEN; i++)
 	{
 		int x = (int)floor(samples(i, 0));
-		//int x = (int)floor(samples(i, 0));
 		int y = (int)floor(samples(i, 1));
+
+		/*
+		src.at<unsigned char>(3*x, y) = 255;
+		src.at<unsigned char>(3*x+1, y) = 255;
+		src.at<unsigned char>(3*x+2, y) = 255;
+		*/
+
 		src.at<unsigned char>(x, 3*y) = 255;
 		src.at<unsigned char>(x, 3*y+1) = 255;
 		src.at<unsigned char>(x, 3*y+2) = 255;
 	}
 
 	return ;
+}
+
+void DrawEllipse::drawErrorEllipse(cov2dMatrix cov, mean2d mean,cv::Mat &src)
+{
+	cv::ellipse(
+		src,
+		computeParams(cov,mean),
+		cv::Scalar::all(255),
+		1);
 }

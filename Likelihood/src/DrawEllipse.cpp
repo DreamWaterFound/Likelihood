@@ -18,18 +18,6 @@ cv::Mat DrawEllipse::createNewImg(void)
 		CV_8UC3, cv::Scalar(0));
 }
 
-/*
-void DrawEllipse::draw(mean2d mean, cov2dMatrix cov, sampleSet samples)
-{
-	//绘制误差椭圆	
-	drawSamples(img, samples);
-
-	cv::imshow("D", img);
-	
-	//先做到这里
-}
-*/
-
 cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	mean2d mean)
 {
@@ -44,11 +32,6 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	Eigen::Matrix2d D = es.pseudoEigenvalueMatrix();
 	//特征向量
 	Eigen::Matrix2d V = es.pseudoEigenvectors();
-
-	//debug
-	cout << "D=" << D << endl;
-	cout << "V=" << V << endl;
-
 
 	//找到最大的特征值
 
@@ -79,15 +62,12 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 
 	
 	//长短轴半长度
-	double a = sqrt(delta1*SQURE_CONST*lamda(0));
-	double b = sqrt(delta2*SQURE_CONST*lamda(1));
+	double a = sqrt(SQURE_CONST*lamda(0));
+	double b = sqrt(SQURE_CONST*lamda(1));
 	
 	//以及角度
 	double angle = atan2(v1(1),v1(0));
 	
-
-	//for debug
-	//double angle = 0.717;
 	//角度范围的转换,[0,2pi] => [-pi,pi]
 	if (angle < 0)
 		angle += 2 * M_PI;
@@ -100,16 +80,10 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	center.x = mean(0);
 	center.y = mean(1);
 
-	cout << "[][]a=" << a << " b=" << b << " angle=" << angle << endl;
-	cout << "center.x=" << center.x << " center.y=" << center.y << endl;
-	
-	//debug
-	angle = 0;
-
 	return cv::RotatedRect(
 		center,
 		cv::Size2d(a,b),
-		(float)-angle);
+		(float)angle);
 }
 
 
@@ -122,8 +96,8 @@ void DrawEllipse::drawSamples(cv::Mat &src, sampleSet samples)
 
 	for (int i = 0; i < DATA_LEN; i++)
 	{
-		int x = (int)floor(samples(i, 0));
-		int y = (int)floor(samples(i, 1));
+		int x = (int)floor(samples(i, 1));
+		int y = (int)floor(samples(i, 0));
 
 		/*
 		src.at<unsigned char>(3*x, y) = 255;
@@ -147,5 +121,3 @@ void DrawEllipse::drawErrorEllipse(cov2dMatrix cov, mean2d mean,cv::Mat &src)
 		cv::Scalar::all(255),
 		1);
 }
-
-//MATLAB跑一下

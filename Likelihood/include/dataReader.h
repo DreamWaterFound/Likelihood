@@ -7,14 +7,13 @@
 
 #include "Types.h"
 
-/*
 #define DEFAULT_PATH_1 "J:\\sample1.txt"
 #define DEFAULT_PATH_2 "J:\\sample2.txt"
-*/
 
+/*
 #define DEFAULT_PATH_1 "D:\\Code\\Likelihood\\Likelihood\\sample1.txt"
 #define DEFAULT_PATH_2 "D:\\Code\\Likelihood\\Likelihood\\sample2.txt"
-
+*/
 
 using namespace std;
 

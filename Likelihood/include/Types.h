@@ -10,7 +10,7 @@
 #define IMG_HIGHT	300
 
 //95%时的卡方常量
-#define SQURE_CONST	1
+#define SQURE_CONST	5.991
 
 //圆周率
 #define M_PI		3.141592654

@@ -53,5 +53,5 @@ int main(void)
 
 
 
-	DrawEllipse::drawErrorEllipse(mu, cov, src);
+	DrawEllipse::drawErrorEllipse( cov,mu, src);
 }

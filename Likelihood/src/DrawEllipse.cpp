@@ -7,24 +7,15 @@
 #include <Eigen/Dense>
 #include <Eigen/EigenValues>
 
+#include <iostream>
+
 using namespace std;
 
-void DrawEllipse::draw(mean2d mean, cov2dMatrix cov, sampleSet samples)
+cv::Mat DrawEllipse::createNewImg(void)
 {
-	//绘制误差椭圆
-
 	//首先生成一个全黑色的画布
-	cv::Mat img(IMG_WIDTH, IMG_HIGHT,
+	return cv::Mat (IMG_WIDTH, IMG_HIGHT,
 		CV_8UC3, cv::Scalar(0));
-	drawSamples(img, samples);
-
-	cv::imshow("D", img);
-	cv::waitKey();
-
-	//先做到这里
-
-
-	
 }
 
 cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
@@ -69,9 +60,10 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	double delta1 = cov(0, 0) > cov(1, 1) ? cov(0, 0) : cov(1, 1);
 	double delta2 = cov(0, 0) <= cov(1, 1) ? cov(0, 0) : cov(1, 1);
 
+	
 	//长短轴半长度
-	double a = delta1*sqrt(SQURE_CONST*lamda(0));
-	double b = delta2*sqrt(SQURE_CONST*lamda(1));
+	double a = sqrt(SQURE_CONST*lamda(0));
+	double b = sqrt(SQURE_CONST*lamda(1));
 
 	//以及角度
 	double angle = atan2(v1(1),v1(0));
@@ -88,11 +80,10 @@ cv::RotatedRect DrawEllipse::computeParams(cov2dMatrix cov,
 	center.x = mean(0);
 	center.y = mean(1);
 
-
 	return cv::RotatedRect(
 		center,
 		cv::Size2d(a,b),
-		(float)-angle);
+		(float)angle);
 }
 
 

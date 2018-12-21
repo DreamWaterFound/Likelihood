@@ -106,3 +106,11 @@ void DrawEllipse::drawSamples(cv::Mat &src, sampleSet samples)
 
 	return ;
 }
+
+void DrawEllipse::drawErrorEllipse(cov2dMatrix cov, mean2d mu, cv::Mat src)
+{
+	cv::ellipse(src,
+		computeParams(cov, mu),
+		cv::Scalar::all(255),
+		1);
+}

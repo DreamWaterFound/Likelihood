@@ -17,11 +17,11 @@ using namespace std;
 class DrawEllipse
 {
 public:
-	static void draw(mean2d mean, cov2dMatrix cov, sampleSet samples);
+	//static void draw(mean2d mean, cov2dMatrix cov, sampleSet samples);
 	static cv::Mat createNewImg(void);
 	static void drawErrorEllipse(cov2dMatrix cov, mean2d mu, cv::Mat src);
-	
+	static void drawSamples(cv::Mat &src, sampleSet samples);
 private:
 	static cv::RotatedRect computeParams(cov2dMatrix cov, mean2d mean);
-	static void drawSamples(cv::Mat &src,sampleSet samples);
+	
 };

@@ -96,9 +96,8 @@ void DrawEllipse::drawSamples(cv::Mat &src, sampleSet samples)
 
 	for (int i = 0; i < DATA_LEN; i++)
 	{
-		int x = (int)floor(samples(i, 0));
-		//int x = (int)floor(samples(i, 0));
-		int y = (int)floor(samples(i, 1));
+		int x = (int)floor(samples(i, 1));
+		int y = (int)floor(samples(i, 0));
 		src.at<unsigned char>(x, 3*y) = 255;
 		src.at<unsigned char>(x, 3*y+1) = 255;
 		src.at<unsigned char>(x, 3*y+2) = 255;
